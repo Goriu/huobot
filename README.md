@@ -1,4 +1,4 @@
-# huobot
+# Huobot
 ## Description
 This project has as target to automate market changing in Huobit exchange. 
 Huobot will let you use Huobit API for buying and selling for you.  

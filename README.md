@@ -9,5 +9,4 @@ Suppose you have $10 worth in an Altcoin/Bitcoin pair but that Altcoin amount is
 
 ## References
 
-*  **HUOBI API**
-    *  https://github.com/huobiapi/API_Docs_en/wiki
+* [Huobi API](https://github.com/huobiapi)   

@@ -24,7 +24,7 @@ API_HOST = "api.huobi.pro"
 SCHEME = 'https'
 
 # language setting: 'zh-CN', 'en':
-LANG = 'zh-CN'
+LANG = 'en'
 
 DEFAULT_GET_HEADERS = {
     'Accept': 'application/json',
@@ -38,17 +38,16 @@ DEFAULT_POST_HEADERS = {
     'Accept-Language': LANG,
     'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0'
 }
-# 此处填写APIKEY
+# APIKEY
 
-ACCESS_KEY = ""
-SECRET_KEY = ""
+ACCESS_KEY = "80e07435-cfb98fdb-8a02cb76-b4515"
+SECRET_KEY = "bface625-6ee2cf90-52c6176e-d2d61"
 
-
-# 首次运行可通过get_accounts()获取acct_id,然后直接赋值,减少重复获取。
+# get_accounts()acct_id
 ACCOUNT_ID = None
 
 
-# API 请求地址
+# API
 MARKET_URL = TRADE_URL = "https://api.huobi.pro"
 
 #各种请求,获取数据方式

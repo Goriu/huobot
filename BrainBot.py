@@ -1,6 +1,6 @@
 from HuobiService import *
-import json
-import time
+# import json
+# import time
 
 Currencies = ['eos','omg','ruff','zil','soc','mee','eko','link','iost']
 

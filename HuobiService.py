@@ -6,13 +6,13 @@
 # @github  : https://github.com/KlausQIU
 
 from HuobiUtil import *
-
+import pprint # for printing dictionaries
 '''
 Market data API
 '''
 
 
-# 获取KLine
+# KLine
 
 
 def get_kline(symbol, period, size):
@@ -30,7 +30,7 @@ def get_kline(symbol, period, size):
     return http_get_request(url, params)
 
 
-# 获取marketdepth
+# marketdepth
 def get_depth(symbol, type):
     """
     :param symbol:
@@ -44,7 +44,7 @@ def get_depth(symbol, type):
     return http_get_request(url, params)
 
 
-# 获取tradedetail
+# Get trade detail
 def get_trade(symbol):
     """
     :param symbol: 可选值：{ ethcny }
@@ -263,7 +263,7 @@ def withdraw(address_id, amount, currency, fee=0, addr_tag=""):
     return api_key_post(params, url)
 
 
-# 申请取消提现虚拟币
+# For cancel a withdraw
 
 
 def cancel_withdraw(address_id):
@@ -410,7 +410,3 @@ def margin_balance(symbol):
         params['symbol'] = symbol
 
     return api_key_get(params, url)
-
-
-if __name__ == '__main__':
-    print get_symbols()

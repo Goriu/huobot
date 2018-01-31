@@ -3,9 +3,15 @@ from HuobiService import *
 # import time
 
 Currencies = ['eos','omg','ruff','zil','soc','mee','eko','link','iost']
-BTC = []
-ETH = []
-USDT = []
+
+BTCBUY= []
+ETHBUY = []
+USDTBUY = []
+BTCSELL = []
+ETHSELL = []
+USDTSELL = []
+MAX=[]
+MIN = []
 
 if __name__ == '__main__':
 
@@ -14,31 +20,44 @@ if __name__ == '__main__':
         #For BTC Market
         y = get_depth(x + 'btc','step0')
         if y['status'] == 'fail':
-            BTC.append('-1')
+            BTCBUY.append('-1')
+            BTCBUY.append('-1')
         else:
-            BTC.append(y['tick']['bids'][0][0])
+            BTCBUY.append(y['tick']['bids'][0][0])
+            BTCSELL.append(y['tick']['asks'][0][0])
         #For ETH Market
         y = get_depth(x + 'eth', 'step0')
         if y['status'] == 'fail':
-            ETH.append('-1')
+            ETHBUY.append('-1')
+            ETHSELL.append('-1')
         else:
-            ETH.append(y['tick']['bids'][0][0])
+            ETHBUY.append(y['tick']['bids'][0][0])
+            ETHSELL.append(y['tick']['asks'][0][0])
         #For USDT Market
         y = get_depth(x + 'usdt', 'step0')
         if y['status'] == 'fail':
-            USDT.append('-1')
+            USDTBUY.append('-1')
+            USDTSELL.append('-1')
         else:
-            USDT.append(y['tick']['bids'][0][0])
+            USDTBUY.append(y['tick']['bids'][0][0])
+            USDTSELL.append(y['tick']['asks'][0][0])
+
+
+
     #Get the values of BTC/USDT and ETH/BTC
     btcusdt = get_depth('btcusdt','step0')['tick']['bids'][0][0]
     ethbtc = get_depth('ethbtc', 'step0')['tick']['bids'][0][0]
 
-    #Normalizing all the values of eth and usdt to BTC, so we can compare them
-    for i in range(0,len(USDT)):
-        USDT[i] = int(USDT[i])/btcusdt
-    for i in range(0,len(ETH)):
-        ETH[i] = ETH[i] * ethbtc
+    #Normalize all the values of eth and usdt to BTC, so we can compare them
+    for i in range(0,len(USDTBUY)):
+        USDTBUY[i] = int(USDTBUY[i])/btcusdt
+        USDTSELL[i] = int(USDTSELL[i])/btcusdt
+    for i in range(0,len(ETHBUY)):
+        ETHBUY[i] = ETHBUY[i] * ethbtc
+        ETHSELL[i] = ETHSELL[i] * ethbtc
 
-    print ETH
-    print BTC
-    print USDT
+    for i in range(0, len(USDTBUY)):
+       MAX.append(max(ETHBUY[i],ETHSELL[i],BTCBUY[i],BTCSELL[i],USDTBUY[i],USDTSELL[i]))
+       MIN.append(min(ETHBUY[i], ETHSELL[i], BTCBUY[i], BTCSELL[i], USDTBUY[i], USDTSELL[i]))
+    print MAX
+    print MIN

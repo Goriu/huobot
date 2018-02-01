@@ -1,15 +1,22 @@
 from HuobiService import *
+from PairDictionary import *
 # import json
 # import time
 
-Currencies = ['eos','omg','ruff','zil','soc','mee','eko','link','iost','qash']
+#  currencies = ['eos','omg','ruff','zil','soc','mee','eko','link','iost','qash']
+currencies = tradingList  # List from PairDictionary.py. It contains all currencies with 2 or  3 trading pairs.
+# currencies = [x.encode('UTF8') for x in currencies] #  convert unicode into utf8 (normal python2.7 string)
+
+print currencies
+print "len Currencies: ",len(currencies)
 
 DIC = {}
 if __name__ == '__main__':
 
     # Get all the initial info for the crypto pairs in all the markets
-    for x in Currencies:
+    for x in currencies:
         DIC[x]= []
+        print "DIC",DIC
         # For BTC Market
         y = get_depth(x + 'btc','step0')
         if y['status'] == 'fail':
@@ -36,6 +43,11 @@ if __name__ == '__main__':
             DIC[x].append(y['tick']['asks'][0][0])
 
 
+
+
+
+
+
     # Get the values of BTC/USDT and ETH/BTC
     btcusdt = get_depth('btcusdt','step0')['tick']['bids'][0][0]
     ethbtc = get_depth('ethbtc', 'step0')['tick']['bids'][0][0]
@@ -48,9 +60,8 @@ if __name__ == '__main__':
             elif i == 4 or i == 5:
                 DIC[x][i] = DIC[x][i] / btcusdt
 
-
-    #First is selected the max buy order from the 3 markets (btc/eth/usdt), then from that, selects the lowest sell
-    #   from the other 2 markets
+    #  First is selected the max buy order from the 3 markets (btc/eth/usdt), then from that, selects the lowest sell
+    #  from the other 2 markets
 
     for x in DIC:
         maximum= max(DIC[x][0],DIC[x][2],DIC[x][4])

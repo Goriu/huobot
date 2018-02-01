@@ -2,7 +2,7 @@ from HuobiService import *
 # import json
 # import time
 
-Currencies = ['eos','omg','ruff','zil','soc','mee','eko','link','iost']
+Currencies = ['eos','omg','ruff','zil','soc','mee','eko','link','iost','qash']
 
 DIC = {}
 if __name__ == '__main__':
@@ -14,7 +14,7 @@ if __name__ == '__main__':
         y = get_depth(x + 'btc','step0')
         if y['status'] == 'fail':
             DIC[x].append(-1)
-            DIC[x].append(-1)
+            DIC[x].append(999999999999)
         else:
             DIC[x].append(y['tick']['bids'][0][0])
             DIC[x].append(y['tick']['asks'][0][0])
@@ -22,7 +22,7 @@ if __name__ == '__main__':
         y = get_depth(x + 'eth', 'step0')
         if y['status'] == 'fail':
             DIC[x].append(-1)
-            DIC[x].append(-1)
+            DIC[x].append(999999999999)
         else:
             DIC[x].append(y['tick']['bids'][0][0])
             DIC[x].append(y['tick']['asks'][0][0])
@@ -30,7 +30,7 @@ if __name__ == '__main__':
         y = get_depth(x + 'usdt', 'step0')
         if y['status'] == 'fail':
             DIC[x].append(-1)
-            DIC[x].append(-1)
+            DIC[x].append(999999999999)
         else:
             DIC[x].append(y['tick']['bids'][0][0])
             DIC[x].append(y['tick']['asks'][0][0])
@@ -48,4 +48,34 @@ if __name__ == '__main__':
             elif i == 4 or i == 5:
                 DIC[x][i] = DIC[x][i] / btcusdt
 
-    print DIC
+    for x in DIC:
+        maximum= max(DIC[x][0],DIC[x][2],DIC[x][4])
+        if maximum == DIC[x][0]:
+            minimum = min(DIC[x][3],DIC[x][5])
+            if minimum == DIC[x][3]:
+                profit = maximum / minimum
+                print 'Compro en BTC Y vendo en ETH con un profit de: ', profit
+            elif minimum == DIC[x][5]:
+                profit = maximum / minimum
+                print 'Compro en BTC Y vendo en USDT con un profit de: ', profit
+        if maximum == DIC[x][2]:
+            minimum = min(DIC[x][1],DIC[x][5])
+            if minimum == DIC[x][1]:
+                profit = maximum / minimum
+                print 'Compro en ETH Y vendo en BTC con un profit de: ', profit
+            elif minimum == DIC[x][5]:
+                profit = maximum / minimum
+                print 'Compro en ETH Y vendo en USDT con un profit de: ', profit
+        if maximum == DIC[x][4]:
+            minimum = min(DIC[x][1],DIC[x][3])
+            if minimum == DIC[x][1]:
+                profit = maximum / minimum
+                print 'Compro en USDT Y vendo en BTC con un profit de: ', profit
+            elif minimum == DIC[x][5]:
+                profit = maximum / minimum
+                print 'Compro en USDT Y vendo en ETH con un profit de: ', profit
+
+
+
+
+

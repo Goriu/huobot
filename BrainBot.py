@@ -48,32 +48,36 @@ if __name__ == '__main__':
             elif i == 4 or i == 5:
                 DIC[x][i] = DIC[x][i] / btcusdt
 
+
+    #First is selected the max buy order from the 3 markets (btc/eth/usdt), then from that, selects the lowest sell
+    #   from the other 2 markets
+
     for x in DIC:
         maximum= max(DIC[x][0],DIC[x][2],DIC[x][4])
         if maximum == DIC[x][0]:
             minimum = min(DIC[x][3],DIC[x][5])
             if minimum == DIC[x][3]:
                 profit = maximum / minimum
-                print 'Compro en BTC Y vendo en ETH con un profit de: ', profit
+                print 'Compro ' + x +' en BTC Y vendo en ETH con un profit de: ', profit
             elif minimum == DIC[x][5]:
                 profit = maximum / minimum
-                print 'Compro en BTC Y vendo en USDT con un profit de: ', profit
+                print 'Compro ' + x +' en BTC Y vendo en USDT con un profit de: ', profit
         if maximum == DIC[x][2]:
             minimum = min(DIC[x][1],DIC[x][5])
             if minimum == DIC[x][1]:
                 profit = maximum / minimum
-                print 'Compro en ETH Y vendo en BTC con un profit de: ', profit
+                print 'Compro ' + x +' en ETH Y vendo en BTC con un profit de: ', profit
             elif minimum == DIC[x][5]:
                 profit = maximum / minimum
-                print 'Compro en ETH Y vendo en USDT con un profit de: ', profit
+                print 'Compro ' + x +' en ETH Y vendo en USDT con un profit de: ', profit
         if maximum == DIC[x][4]:
             minimum = min(DIC[x][1],DIC[x][3])
             if minimum == DIC[x][1]:
                 profit = maximum / minimum
-                print 'Compro en USDT Y vendo en BTC con un profit de: ', profit
+                print 'Compro ' + x +' en USDT Y vendo en BTC con un profit de: ', profit
             elif minimum == DIC[x][5]:
                 profit = maximum / minimum
-                print 'Compro en USDT Y vendo en ETH con un profit de: ', profit
+                print 'Compro ' + x +' en USDT Y vendo en ETH con un profit de: ', profit
 
 
 

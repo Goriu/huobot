@@ -6,19 +6,9 @@
 from HuobiService import *
 import pprint
 
-symbols = get_symbols()  # symbols is a dictionary  containing all the currencies and their pairs.
-# pprint.pprint(symbols, width=1)  # to check what is symbols.
+symbols = get_symbols()                      # symbols is a dictionary  containing all the currencies and their pairs.
+# pprint.pprint(symbols, width=1)            # to check what is symbols.
 # pprint.pprint(symbols['data'][0], width=1) # check a simple trading pair
-
-# print 'quote-currency' in symbols['data'][0]  #check if there is a key called 'quote-currency' in symbols
-#                                                only for keys(dictionary indexes), not working for values.
-
-
-# TESTING
-key, value = 'quote-currency', 'usdt'
-print key in symbols['data'][0] and value == symbols['data'][0][key]  # check if there is a trading pair with USDT.
-print 'usdt' in symbols['data'][0].values()  # other way to check if there is a trading pair with USDT
-# END OF TESTING
 
 pairs = {'btc': [], 'eth': [], 'usdt': []}
 # dict of 3 arrays. each one will store the currencies that can be trade against their key 'btc','eth' or 'usdt'
@@ -29,19 +19,26 @@ main_cryptos ={'btc', 'eth', 'usdt'}
 
 # store in pairs the correspondent currencies.
 for i in symbols['data']:
-
     for j in main_cryptos:
         if j in i['quote-currency']:
             pairs[j].append(i['base-currency'])
 
-# TODO-me create a set (inmutable) with all currencies with 2 or 3 trading pairs. e.g. omgbtc, omgeth...
+
+# Create a list including all currencies with 2 or 3 trading pairs. e.g. omg(btc,eth,usdt), nas(btc,eth)...
+def create_trading_list(pairs):
+    # Assume all coins are in btc pair.
+    # for currency in pairs['btc']:
+    tradingList = []  # used to store all currencies (nas,qash...) with 2 or more trading pairs.
+    # onlyBTCpair=[]  # used to store all currencies with just one trading pair (btc pair).
+    for currency in pairs['btc']:
+        if any(currency_eth == currency for currency_eth in pairs['eth']):
+            tradingList.append(currency)
+        elif any(currency_usdt == currency for currency_usdt in pairs['usdt']):
+            tradingList.append(currency)
+    #   else:
+    #       onlyBTCpair.append(currency)
+    # print "Coins with just BTC pair: ",onlyBTCpair
+    return tradingList
 
 
-print pairs
-
-print len(pairs['btc'])  # number of cryptocurrencies for trading in btc pair
-print len(pairs['eth'])  # number of cryptocurrencies for trading in eth pair
-print len(pairs['usdt'])  # number of cryptocurrencies for trading in usdt pair
-print pairs['usdt']
-#and value == symbols["data"][0]
-#if item in list: ....
+tradingList = create_trading_list(pairs) # final trading list. list with all currencies with 2 or more trading pairs.

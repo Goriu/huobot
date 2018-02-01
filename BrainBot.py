@@ -72,33 +72,33 @@ if __name__ == '__main__':
         if maximum == DIC[x][0]:
             minimum = min(DIC[x][3],DIC[x][5])
             if minimum == DIC[x][3]:
-                profit = maximum / minimum
+                profit = ((maximum / minimum) - 1) * 100
                 profit1 = maximum - minimum
-                print 'Buy ' + x +' in BTC Market Y sell it in ETH with a % profit of: ', profit, " and a total profit of: ", profit1, " btc"
+                print 'Buy ' + x +' in BTC Market and sell it in ETH with a % profit of: ', profit, " and a total profit of: ", profit1, " btc"
             elif minimum == DIC[x][5]:
-                profit = maximum / minimum
+                profit = ((maximum / minimum) - 1)*100
                 profit1 = maximum - minimum
-                print 'Buy ' + x + ' in BTC Market Y sell it in USDT with a % profit of: ', profit, " and a total profit of: ", profit1, " btc"
+                print 'Buy ' + x + ' in BTC Market and sell it in USDT with a % profit of: ', profit, " and a total profit of: ", profit1, " btc"
         if maximum == DIC[x][2]:
             minimum = min(DIC[x][1],DIC[x][5])
             if minimum == DIC[x][1]:
-                profit = maximum / minimum
+                profit = ((maximum / minimum) - 1) * 100
                 profit1 = maximum - minimum
-                print 'Buy ' + x + ' in ETH Market Y sell it in BTC with a % profit of: ', profit, " and a total profit of: ", profit1, " btc"
+                print 'Buy ' + x + ' in ETH Market and sell it in BTC with a % profit of: ', profit, " and a total profit of: ", profit1, " btc"
             elif minimum == DIC[x][5]:
-                profit = maximum / minimum
+                profit = ((maximum / minimum) - 1) * 100
                 profit1 = maximum - minimum
-                print 'Buy ' + x + ' in ETH Market Y sell it in USDT with a % profit of: ', profit, " and a total profit of: ", profit1, " btc"
+                print 'Buy ' + x + ' in ETH Market and sell it in USDT with a % profit of: ', profit, " and a total profit of: ", profit1, " btc"
         if maximum == DIC[x][4]:
             minimum = min(DIC[x][1],DIC[x][3])
             if minimum == DIC[x][1]:
-                profit = maximum / minimum
+                profit = ((maximum / minimum) - 1) * 100
                 profit1 = maximum - minimum
-                print 'Buy ' + x + ' in USDT Market Y sell it in BTC with a % profit of: ', profit, " and a total profit of: ", profit1, " btc"
+                print 'Buy ' + x + ' in USDT Market and sell it in BTC with a % profit of: ', profit, " and a total profit of: ", profit1, " btc"
             elif minimum == DIC[x][3]:
-                profit = maximum / minimum
+                profit = ((maximum / minimum) - 1) * 100
                 profit1 = maximum - minimum
-                print 'Buy ' + x + ' in USDT Market Y sell it in ETH with a % profit of: ', profit, " and a total profit of: ", profit1, " btc"
+                print 'Buy ' + x + ' in USDT Market and sell it in ETH with a % profit of: ', profit, " and a total profit of: ", profit1, " btc"
 
 
 
